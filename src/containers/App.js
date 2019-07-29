@@ -1,5 +1,4 @@
 import React from 'react';
-import './style.scss';
 import {HashRouter} from 'react-router-dom';
 import Routes from './Routes';
 

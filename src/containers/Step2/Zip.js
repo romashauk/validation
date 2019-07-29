@@ -2,6 +2,7 @@ import React, {Component} from 'react';
 import {Link, withRouter} from 'react-router-dom';
 import {connect} from 'react-redux';
 import {setZipCode} from 'redux/auth/action';
+import {Button, Input} from 'reactstrap';
 
 class Zip extends Component {
     state = {
@@ -36,14 +37,14 @@ class Zip extends Component {
                 <main>
                     <h1>Step 2</h1>
                     <h3>Zip</h3>
-                    <input
+                    <Input
                         value={zipCode}
                         onChange={e => this.handleZipCode(e.target.value)}
                     />
-                    <div>
-                        <button disabled={!zipCode} onClick={this.onSumbit}>
+                    <div style={{marginTop: 20}}>
+                        <Button disabled={!zipCode} onClick={this.onSumbit}>
                             Next Step
-                        </button>
+                        </Button>
                     </div>
                 </main>
             </div>

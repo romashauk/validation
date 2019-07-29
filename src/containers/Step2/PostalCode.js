@@ -2,6 +2,7 @@ import React, {Component} from 'react';
 import {Link, withRouter} from 'react-router-dom';
 import {connect} from 'react-redux';
 import {setPostalCode} from 'redux/auth/action';
+import {Button, Input} from 'reactstrap';
 
 class PostalCode extends Component {
     state = {
@@ -36,14 +37,14 @@ class PostalCode extends Component {
                 <main>
                     <h1>Step 2</h1>
                     <h3>PostalCode</h3>
-                    <input
+                    <Input
                         value={postalCode}
                         onChange={e => this.handlePostCode(e.target.value)}
                     />
-                    <div>
-                        <button disabled={!postalCode} onClick={this.onSumbit}>
+                    <div style={{marginTop: 20}}>
+                        <Button disabled={!postalCode} onClick={this.onSumbit}>
                             Next Step
-                        </button>
+                        </Button>
                     </div>
                 </main>
             </div>

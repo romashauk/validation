@@ -2,12 +2,12 @@ import React, {Component} from 'react';
 import {Link, withRouter, Prompt} from 'react-router-dom';
 import {connect} from 'react-redux';
 import {setCardNumber, setCountry} from 'redux/auth/action';
+import {Button, Input, Modal, ModalBody} from 'reactstrap';
 
 class Step1 extends Component {
     state = {
         cardNumber: '',
-        country: 'Ukraine',
-        shouldLoad: false
+        country: 'Ukraine'
     };
     componentDidMount() {
         window.onbeforeunload = this.handleOnBeforeUnload;
@@ -22,11 +22,6 @@ class Step1 extends Component {
             cardNumber
         });
     };
-    handleLoad = () => {
-        this.setState({
-            shouldLoad: true
-        });
-    };
     onSumbit = () => {
         const {cardNumber, country} = this.state;
         const {setCardNumber, setCountry, history} = this.props;
@@ -34,10 +29,6 @@ class Step1 extends Component {
         setCountry(country);
         history.push('/step2');
     };
-    // componentWillUnmount() {
-    //     const {cardNumber} = this.state;
-    //     // cardNumber && window.confirm('Are you Sure to leave');
-    // }
     handleOnBeforeUnload = e => {
         if (this.state.cardNumber) {
             const message = 'Are you sure';
@@ -46,11 +37,11 @@ class Step1 extends Component {
         }
     };
     render() {
-        const {cardNumber, country, shouldLoad} = this.state;
+        const {cardNumber, country} = this.state;
         return (
             <div>
                 <header>
-                    <Link to="/help">Help?</Link>
+                    <Link>Help?</Link>
                 </header>
                 {/* <Prompt
                     when={true}
@@ -63,22 +54,23 @@ class Step1 extends Component {
                 <main>
                     <h1>Step 1</h1>
                     <h3>Card Number</h3>
-                    <input
+                    <Input
                         value={cardNumber}
                         onChange={e => this.handleCardNumber(e.target.value)}
                     />
                     <h3>Select country</h3>
-                    <select
+                    <Input
+                        type="select"
                         value={country}
                         onChange={e => this.handleCountry(e.target.value)}
                     >
                         <option value="Ukraine">Ukraine</option>
                         <option value="United States">United States</option>
-                    </select>
-                    <div>
-                        <button disabled={!cardNumber} onClick={this.onSumbit}>
+                    </Input>
+                    <div style={{marginTop: 20}}>
+                        <Button disabled={!cardNumber} onClick={this.onSumbit}>
                             Next Step
-                        </button>
+                        </Button>
                     </div>
                 </main>
             </div>
