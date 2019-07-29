@@ -7,6 +7,14 @@ class PostalCode extends Component {
     state = {
         postalCode: ''
     };
+    componentDidMount() {
+        window.onbeforeunload = this.handleOnBeforeUnload;
+    }
+    handleOnBeforeUnload = e => {
+        const message = 'Are you sure';
+        e.returnValue = message;
+        return message;
+    };
     handlePostCode = postalCode => {
         this.setState({
             postalCode

@@ -7,6 +7,14 @@ class Zip extends Component {
     state = {
         zipCode: ''
     };
+    componentDidMount() {
+        window.onbeforeunload = this.handleOnBeforeUnload;
+    }
+    handleOnBeforeUnload = e => {
+        const message = 'Are you sure';
+        e.returnValue = message;
+        return message;
+    };
     handleZipCode = zipCode => {
         this.setState({
             zipCode
